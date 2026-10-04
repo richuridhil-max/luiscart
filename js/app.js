@@ -14,7 +14,7 @@
     filteredProducts: [...LUISCART_PRODUCTS],
     cart: JSON.parse(localStorage.getItem('luiscart_cart') || '[]'),
     wishlist: JSON.parse(localStorage.getItem('luiscart_wishlist') || '[]'),
-    currency: localStorage.getItem('luiscart_currency') || 'USD',
+    currency: 'INR',
     category: 'All',
     priceFilter: 'all',
     ratingFilter: 'all',
@@ -72,19 +72,13 @@
   };
 
   // --- HELPERS ---
-  function formatPrice(amountInUSD) {
-    const cur = CURRENCIES[state.currency] || CURRENCIES.USD;
-    const converted = amountInUSD * cur.rate;
-    const formatted = converted.toLocaleString(undefined, {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2
-    });
-    const parts = formatted.split('.');
+  function formatPrice(amount) {
+    const formatted = Math.round(amount).toLocaleString('en-IN');
     return {
-      symbol: cur.symbol,
-      main: parts[0],
-      cents: parts[1] || '00',
-      fullText: `${cur.symbol}${formatted}`
+      symbol: '₹',
+      main: formatted,
+      cents: '',
+      fullText: `₹${formatted}`
     };
   }
 
@@ -109,7 +103,7 @@
   function saveState() {
     localStorage.setItem('luiscart_cart', JSON.stringify(state.cart));
     localStorage.setItem('luiscart_wishlist', JSON.stringify(state.wishlist));
-    localStorage.setItem('luiscart_currency', state.currency);
+    localStorage.setItem('luiscart_currency', 'INR');
   }
 
   // --- WHATSAPP MESSAGING INTEGRATION ---
@@ -119,12 +113,12 @@
       return;
     }
 
-    const subtotalUSD = state.cart.reduce((sum, item) => {
+    const subtotal = state.cart.reduce((sum, item) => {
       const p = state.products.find(prod => prod.id === item.id);
       return sum + (p ? p.price * item.quantity : 0);
     }, 0);
-    let discountUSD = subtotalUSD * (state.discountPercent / 100);
-    const finalTotal = formatPrice(Math.max(0, subtotalUSD - discountUSD)).fullText;
+    let discount = subtotal * (state.discountPercent / 100);
+    const finalTotal = formatPrice(Math.max(0, subtotal - discount)).fullText;
 
     const itemsText = state.cart.map(item => {
       const p = state.products.find(prod => prod.id === item.id);
@@ -145,7 +139,7 @@
     message += `📦 *Order Items:*\n${itemsText}\n`;
     message += `━━━━━━━━━━━━━━━━━━━━━\n`;
     if (state.discountPercent > 0) {
-      message += `🏷️ *VIP Discount (${state.discountPercent}%):* -${formatPrice(discountUSD).fullText}\n`;
+      message += `🏷️ *VIP Discount (${state.discountPercent}%):* -${formatPrice(discount).fullText}\n`;
     }
     message += `💰 *Grand Total:* *${finalTotal}*\n`;
     message += `🚚 *Delivery:* Express Insured Courier\n`;
@@ -199,10 +193,10 @@
 
     // Price
     if (state.priceFilter !== 'all') {
-      if (state.priceFilter === 'under-100') list = list.filter(p => p.price < 100);
-      else if (state.priceFilter === '100-300') list = list.filter(p => p.price >= 100 && p.price <= 300);
-      else if (state.priceFilter === '300-600') list = list.filter(p => p.price > 300 && p.price <= 600);
-      else if (state.priceFilter === 'over-600') list = list.filter(p => p.price > 600);
+      if (state.priceFilter === 'under-5000') list = list.filter(p => p.price < 5000);
+      else if (state.priceFilter === '5000-15000') list = list.filter(p => p.price >= 5000 && p.price <= 15000);
+      else if (state.priceFilter === '15000-30000') list = list.filter(p => p.price > 15000 && p.price <= 30000);
+      else if (state.priceFilter === 'over-30000') list = list.filter(p => p.price > 30000);
     }
 
     // Rating
@@ -246,7 +240,14 @@
     if (!DOM.activeFilterTags) return;
     const tags = [];
     if (state.category !== 'All') tags.push({ label: `Category: ${state.category}`, reset: () => state.category = 'All' });
-    if (state.priceFilter !== 'all') tags.push({ label: `Price: ${state.priceFilter}`, reset: () => state.priceFilter = 'all' });
+    if (state.priceFilter !== 'all') {
+      let pLabel = state.priceFilter;
+      if (state.priceFilter === 'under-5000') pLabel = 'Under ₹5,000';
+      else if (state.priceFilter === '5000-15000') pLabel = '₹5,000 — ₹15,000';
+      else if (state.priceFilter === '15000-30000') pLabel = '₹15,000 — ₹30,000';
+      else if (state.priceFilter === 'over-30000') pLabel = 'Over ₹30,000';
+      tags.push({ label: `Price: ${pLabel}`, reset: () => state.priceFilter = 'all' });
+    }
     if (state.ratingFilter !== 'all') tags.push({ label: `Rating: ${state.ratingFilter}★+`, reset: () => state.ratingFilter = 'all' });
     if (state.colorFilter !== 'all') tags.push({ label: `Color: ${state.colorFilter}`, reset: () => state.colorFilter = 'all' });
     if (state.materialFilter !== 'all') tags.push({ label: `Material: ${state.materialFilter}`, reset: () => state.materialFilter = 'all' });
@@ -577,26 +578,26 @@
     }
 
     // Calculations
-    const subtotalUSD = state.cart.reduce((sum, item) => {
+    const subtotal = state.cart.reduce((sum, item) => {
       const p = state.products.find(prod => prod.id === item.id);
       return sum + (p ? p.price * item.quantity : 0);
     }, 0);
 
-    let discountUSD = subtotalUSD * (state.discountPercent / 100);
-    const finalTotalUSD = Math.max(0, subtotalUSD - discountUSD);
+    let discount = subtotal * (state.discountPercent / 100);
+    const finalTotal = Math.max(0, subtotal - discount);
 
-    if (DOM.cartSubtotal) DOM.cartSubtotal.textContent = formatPrice(subtotalUSD).fullText;
-    if (DOM.cartTotal) DOM.cartTotal.textContent = formatPrice(finalTotalUSD).fullText;
+    if (DOM.cartSubtotal) DOM.cartSubtotal.textContent = formatPrice(subtotal).fullText;
+    if (DOM.cartTotal) DOM.cartTotal.textContent = formatPrice(finalTotal).fullText;
 
-    // Free shipping threshold ($150)
-    const freeShippingThreshold = 150;
-    const shippingProgressPct = Math.min(100, (subtotalUSD / freeShippingThreshold) * 100);
+    // Free shipping threshold (₹2,499)
+    const freeShippingThreshold = 2499;
+    const shippingProgressPct = Math.min(100, (subtotal / freeShippingThreshold) * 100);
     if (DOM.shippingProgress) DOM.shippingProgress.style.width = `${shippingProgressPct}%`;
     if (DOM.shippingText) {
-      if (subtotalUSD >= freeShippingThreshold) {
+      if (subtotal >= freeShippingThreshold) {
         DOM.shippingText.innerHTML = `<span class="text-emerald-700 font-semibold">🎉 You have unlocked Free Insured Express Delivery!</span>`;
       } else {
-        const remaining = formatPrice(freeShippingThreshold - subtotalUSD).fullText;
+        const remaining = formatPrice(freeShippingThreshold - subtotal).fullText;
         DOM.shippingText.textContent = `Add ${remaining} more to unlock Complimentary Express Shipping`;
       }
     }
@@ -606,7 +607,7 @@
       if (state.discountPercent > 0) {
         DOM.cartDiscountRow.classList.remove('hidden');
         if (DOM.cartDiscountVal) {
-          DOM.cartDiscountVal.textContent = `-${formatPrice(discountUSD).fullText} (${state.discountPercent}%)`;
+          DOM.cartDiscountVal.textContent = `-${formatPrice(discount).fullText} (${state.discountPercent}%)`;
         }
       } else {
         DOM.cartDiscountRow.classList.add('hidden');
@@ -908,19 +909,19 @@
   }
 
   function renderCheckoutStep() {
-    const subtotalUSD = state.cart.reduce((sum, item) => {
+    const subtotal = state.cart.reduce((sum, item) => {
       const p = state.products.find(prod => prod.id === item.id);
       return sum + (p ? p.price * item.quantity : 0);
     }, 0);
-    const discountUSD = subtotalUSD * (state.discountPercent / 100);
-    const finalTotalUSD = Math.max(0, subtotalUSD - discountUSD);
+    const discount = subtotal * (state.discountPercent / 100);
+    const finalTotal = Math.max(0, subtotal - discount);
 
     const step1El = document.getElementById('checkout-step-1');
     const step2El = document.getElementById('checkout-step-2');
     const checkoutTotalSummary = document.getElementById('checkout-total-summary');
 
     if (checkoutTotalSummary) {
-      checkoutTotalSummary.textContent = formatPrice(finalTotalUSD).fullText;
+      checkoutTotalSummary.textContent = formatPrice(finalTotal).fullText;
     }
 
     if (state.currentCheckoutStep === 1) {
@@ -935,12 +936,12 @@
 
   function completeOrder(formData) {
     const orderId = 'LC-' + Math.floor(100000 + Math.random() * 900000);
-    const subtotalUSD = state.cart.reduce((sum, item) => {
+    const subtotal = state.cart.reduce((sum, item) => {
       const p = state.products.find(prod => prod.id === item.id);
       return sum + (p ? p.price * item.quantity : 0);
     }, 0);
-    const discountUSD = subtotalUSD * (state.discountPercent / 100);
-    const finalTotalUSD = Math.max(0, subtotalUSD - discountUSD);
+    const discount = subtotal * (state.discountPercent / 100);
+    const finalTotal = Math.max(0, subtotal - discount);
 
     state.lastOrder = {
       orderId,
@@ -950,7 +951,7 @@
       phone: formData.phone || '',
       address: `${formData.address || '100 Luxury Avenue'}, ${formData.city || 'Beverly Hills'}, ${formData.zip || '90210'}`,
       items: [...state.cart],
-      total: formatPrice(finalTotalUSD).fullText,
+      total: formatPrice(finalTotal).fullText,
       paymentMethod: formData.paymentMethod || 'Credit Card'
     };
 
@@ -1414,6 +1415,8 @@
 
   // --- INITIALIZE ---
   function init() {
+    localStorage.setItem('luiscart_currency', 'INR');
+    state.currency = 'INR';
     initSearch();
     setupEvents();
     applyFilters();
