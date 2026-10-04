@@ -11,7 +11,7 @@ A modern, high-fidelity audio and headphone e-commerce storefront built to showc
 - **Brand Identity**: Custom deep emerald slate (`#071a17` / `#0c3a35`), champagne gold accents (`#c5a869`), and luxury typography.
 - **Top Utility Bar**: Phone concierge (`+91 9746359282`), seasonal promo announcement, language switcher, and multi-currency selector (`USD $`, `EUR €`, `GBP £`, `INR ₹`, `AED د.إ`).
 - **Main Navigation Header**: Sticky navigation with brand monogram, Category mega-menu, pill-shaped live search input with instant suggestions, Account and Cart badges.
-- **Hero Promotional Banner Card**: High-contrast headline (*"Grab Upto 50% Off On Selected Headphone"*), pill `Buy Now` CTA button, and high-res lifestyle imagery.
+- **Hero Promotional Banner Card**: High-contrast headline (*"Grab Upto 50% Off On Selected Products"*), pill `Buy Now` CTA button, and high-res lifestyle imagery.
 - **Horizontal Filter Pills Bar**: Interactive filter pills matching reference:
   - `Headphone Type ▾` (Over-Ear, Earbuds & TWS, Noise Cancelling, Sports & Open-Ear, Studio Audiophile)
   - `Price ▾` (Under $100, $100-$300, $300-$600, Over $600)
