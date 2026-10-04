@@ -58,7 +58,13 @@
     orderConfirmationContent: document.getElementById('order-confirmation-content'),
     currencySelectors: document.querySelectorAll('.currency-select'),
     searchInput: document.getElementById('search-input'),
+    searchInputMobile: document.getElementById('search-input-mobile'),
     searchSuggestions: document.getElementById('search-suggestions'),
+    searchSuggestionsMobile: document.getElementById('search-suggestions-mobile'),
+    allFiltersDrawer: document.getElementById('all-filters-drawer'),
+    allFiltersBackdrop: document.getElementById('all-filters-backdrop'),
+    openAllFiltersBtn: document.getElementById('open-all-filters-btn'),
+    closeAllFiltersBtn: document.getElementById('close-all-filters-btn'),
     toastContainer: document.getElementById('toast-container'),
     activeFilterTags: document.getElementById('active-filter-tags'),
     filterDropdowns: document.querySelectorAll('.filter-dropdown'),
@@ -245,7 +251,11 @@
     if (state.colorFilter !== 'all') tags.push({ label: `Color: ${state.colorFilter}`, reset: () => state.colorFilter = 'all' });
     if (state.materialFilter !== 'all') tags.push({ label: `Material: ${state.materialFilter}`, reset: () => state.materialFilter = 'all' });
     if (state.offerFilter !== 'all') tags.push({ label: `Offer: ${state.offerFilter}`, reset: () => state.offerFilter = 'all' });
-    if (state.searchQuery) tags.push({ label: `Search: "${state.searchQuery}"`, reset: () => { state.searchQuery = ''; if (DOM.searchInput) DOM.searchInput.value = ''; } });
+    if (state.searchQuery) tags.push({ label: `Search: "${state.searchQuery}"`, reset: () => { 
+      state.searchQuery = ''; 
+      if (DOM.searchInput) DOM.searchInput.value = ''; 
+      if (DOM.searchInputMobile) DOM.searchInputMobile.value = ''; 
+    } });
 
     if (tags.length === 0) {
       DOM.activeFilterTags.innerHTML = '';
@@ -284,6 +294,7 @@
         state.offerFilter = 'all';
         state.searchQuery = '';
         if (DOM.searchInput) DOM.searchInput.value = '';
+        if (DOM.searchInputMobile) DOM.searchInputMobile.value = '';
         applyFilters();
       });
     }
@@ -335,9 +346,9 @@
       return `
         <div class="product-card rounded-2xl flex flex-col group cursor-pointer" data-id="${product.id}">
           <!-- Product Image Container -->
-          <div class="product-image-container aspect-square p-6 relative">
+          <div class="product-image-container aspect-square p-3 sm:p-6 relative">
             ${product.offer ? `
-              <span class="absolute top-3 left-3 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+              <span class="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 px-2 sm:px-2.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider ${
                 product.offer.includes('50%') 
                   ? 'bg-red-500 text-white' 
                   : 'bg-[#0c3a35] text-white'
@@ -348,11 +359,11 @@
 
             <!-- Floating Wishlist Heart -->
             <button 
-              class="btn-wishlist ${isWishlisted ? 'active' : ''} absolute top-3 right-3 z-10" 
+              class="btn-wishlist ${isWishlisted ? 'active' : ''} absolute top-2.5 right-2.5 sm:top-3 sm:right-3 z-10 w-7 h-7 sm:w-8 sm:h-8" 
               title="Add to Wishlist"
               data-wishlist-id="${product.id}"
             >
-              <i data-lucide="heart" class="w-4 h-4"></i>
+              <i data-lucide="heart" class="w-3.5 h-3.5 sm:w-4 sm:h-4"></i>
             </button>
 
             <!-- Product Photo -->
@@ -364,46 +375,46 @@
             />
           </div>
 
-          <!-- Product Meta & Actions (Exact reference layout) -->
-          <div class="pt-4 pb-2 px-1 flex flex-col flex-grow justify-between">
+          <!-- Product Meta & Actions (Exact reference layout, mobile-optimized) -->
+          <div class="pt-3 pb-2 px-1 flex flex-col flex-grow justify-between">
             <div>
               <!-- Title & Price Row -->
-              <div class="flex items-baseline justify-between gap-2 mb-1">
-                <h3 class="font-bold text-gray-900 text-base leading-tight group-hover:text-[#0c3a35] transition-colors truncate">
+              <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-0.5 sm:gap-2 mb-1">
+                <h3 class="font-bold text-gray-900 text-xs sm:text-base leading-tight group-hover:text-[#0c3a35] transition-colors truncate">
                   ${product.name}
                 </h3>
                 <div class="price-display shrink-0">
-                  <span class="currency font-bold text-gray-900 text-sm">${price.symbol}</span>
-                  <span class="font-bold text-gray-900 text-base">${price.main}</span>
-                  <span class="cents font-bold text-gray-900">${price.cents}</span>
+                  <span class="currency font-bold text-gray-900 text-xs sm:text-sm">${price.symbol}</span>
+                  <span class="font-bold text-gray-900 text-xs sm:text-base">${price.main}</span>
+                  <span class="cents font-bold text-gray-900 text-[10px] sm:text-xs">${price.cents}</span>
                 </div>
               </div>
 
-              <!-- Subtitle Description (Reference exact 1-line feature) -->
-              <p class="text-xs text-gray-500 font-normal line-clamp-1 mb-2">
+              <!-- Subtitle Description -->
+              <p class="text-[10px] sm:text-xs text-gray-500 font-normal line-clamp-1 mb-1.5 sm:mb-2">
                 ${product.subtitle}
               </p>
 
               <!-- Star Rating & Review Count -->
-              <div class="flex items-center gap-1.5 mb-4">
+              <div class="flex items-center gap-1 sm:gap-1.5 mb-2.5 sm:mb-4">
                 <div class="flex items-center text-emerald-800">
                   ${Array(5).fill(0).map((_, i) => `
-                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20">
+                    <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-current" viewBox="0 0 20 20">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
                     </svg>
                   `).join('')}
                 </div>
-                <span class="text-xs text-gray-500 font-medium">(${product.reviewsCount})</span>
+                <span class="text-[10px] sm:text-xs text-gray-500 font-medium">(${product.reviewsCount})</span>
               </div>
             </div>
 
-            <!-- Pill Add to Cart Button (Reference layout) -->
+            <!-- Pill Add to Cart Button -->
             <div>
               <button 
-                class="btn-cart-pill ${inCart ? 'btn-cart-pill-filled' : 'btn-cart-pill-outline'} w-auto add-to-cart-btn" 
+                class="btn-cart-pill ${inCart ? 'btn-cart-pill-filled' : 'btn-cart-pill-outline'} w-full sm:w-auto py-1.5 sm:py-2 px-3 sm:px-5 text-[11px] sm:text-xs add-to-cart-btn" 
                 data-product-id="${product.id}"
               >
-                ${inCart ? 'Added to Cart ✓' : 'Add to Cart'}
+                ${inCart ? 'Added ✓' : 'Add to Cart'}
               </button>
             </div>
           </div>
@@ -1053,49 +1064,61 @@
     });
   }
 
-  // --- SEARCH & AUTOCOMPLETE ---
+  // --- SEARCH & AUTOCOMPLETE (Desktop & Mobile) ---
   function initSearch() {
-    if (!DOM.searchInput) return;
+    const searchInputs = [DOM.searchInput, DOM.searchInputMobile].filter(Boolean);
 
-    DOM.searchInput.addEventListener('input', (e) => {
-      state.searchQuery = e.target.value;
-      applyFilters();
+    searchInputs.forEach(input => {
+      input.addEventListener('input', (e) => {
+        state.searchQuery = e.target.value;
+        // Sync the other input
+        searchInputs.forEach(other => {
+          if (other !== input) other.value = state.searchQuery;
+        });
 
-      // Show quick suggestions dropdown
-      if (state.searchQuery.trim().length > 1) {
-        const matches = state.products.filter(p => 
-          p.name.toLowerCase().includes(state.searchQuery.toLowerCase()) ||
-          p.category.toLowerCase().includes(state.searchQuery.toLowerCase())
-        ).slice(0, 4);
+        applyFilters();
 
-        if (matches.length > 0 && DOM.searchSuggestions) {
-          DOM.searchSuggestions.innerHTML = matches.map(m => `
-            <div class="flex items-center gap-3 p-2.5 hover:bg-gray-50 cursor-pointer rounded-lg search-suggest-item" data-id="${m.id}">
-              <img src="${m.image}" class="w-9 h-9 object-contain bg-gray-100 rounded p-1" />
-              <div class="min-w-0 flex-grow">
-                <p class="text-xs font-semibold text-gray-900 truncate">${m.name}</p>
-                <p class="text-[10px] text-gray-400">${m.category} • ${formatPrice(m.price).fullText}</p>
+        const suggestionsEl = input === DOM.searchInput ? DOM.searchSuggestions : DOM.searchSuggestionsMobile;
+
+        // Show quick suggestions dropdown
+        if (state.searchQuery.trim().length > 1) {
+          const matches = state.products.filter(p => 
+            p.name.toLowerCase().includes(state.searchQuery.toLowerCase()) ||
+            p.category.toLowerCase().includes(state.searchQuery.toLowerCase())
+          ).slice(0, 4);
+
+          if (matches.length > 0 && suggestionsEl) {
+            suggestionsEl.innerHTML = matches.map(m => `
+              <div class="flex items-center gap-3 p-2.5 hover:bg-gray-50 cursor-pointer rounded-lg search-suggest-item" data-id="${m.id}">
+                <img src="${m.image}" class="w-9 h-9 object-contain bg-gray-100 rounded p-1" />
+                <div class="min-w-0 flex-grow">
+                  <p class="text-xs font-semibold text-gray-900 truncate">${m.name}</p>
+                  <p class="text-[10px] text-gray-400">${m.category} • ${formatPrice(m.price).fullText}</p>
+                </div>
               </div>
-            </div>
-          `).join('');
-          DOM.searchSuggestions.classList.remove('hidden');
+            `).join('');
+            suggestionsEl.classList.remove('hidden');
 
-          DOM.searchSuggestions.querySelectorAll('.search-suggest-item').forEach(item => {
-            item.addEventListener('click', () => {
-              openQuickView(item.dataset.id);
-              DOM.searchSuggestions.classList.add('hidden');
+            suggestionsEl.querySelectorAll('.search-suggest-item').forEach(item => {
+              item.addEventListener('click', () => {
+                openQuickView(item.dataset.id);
+                suggestionsEl.classList.add('hidden');
+              });
             });
-          });
+          }
+        } else if (suggestionsEl) {
+          suggestionsEl.classList.add('hidden');
         }
-      } else if (DOM.searchSuggestions) {
-        DOM.searchSuggestions.classList.add('hidden');
-      }
+      });
     });
 
     // Close suggestions on outside click
     document.addEventListener('click', (e) => {
-      if (DOM.searchSuggestions && !DOM.searchInput.contains(e.target) && !DOM.searchSuggestions.contains(e.target)) {
+      if (DOM.searchSuggestions && DOM.searchInput && !DOM.searchInput.contains(e.target) && !DOM.searchSuggestions.contains(e.target)) {
         DOM.searchSuggestions.classList.add('hidden');
+      }
+      if (DOM.searchSuggestionsMobile && DOM.searchInputMobile && !DOM.searchInputMobile.contains(e.target) && !DOM.searchSuggestionsMobile.contains(e.target)) {
+        DOM.searchSuggestionsMobile.classList.add('hidden');
       }
     });
   }
@@ -1299,6 +1322,81 @@
         document.getElementById('catalog-section')?.scrollIntoView({ behavior: 'smooth' });
       });
     });
+
+    // All Filters Drawer / Sheet Handlers
+    function openAllFilters() {
+      if (!DOM.allFiltersDrawer) return;
+      DOM.allFiltersDrawer.classList.remove('hidden');
+      if (DOM.allFiltersBackdrop) DOM.allFiltersBackdrop.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      updateFilterSheetActiveStates();
+    }
+
+    function closeAllFilters() {
+      if (!DOM.allFiltersDrawer) return;
+      DOM.allFiltersDrawer.classList.add('hidden');
+      if (DOM.allFiltersBackdrop) DOM.allFiltersBackdrop.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function updateFilterSheetActiveStates() {
+      document.querySelectorAll('.sheet-filter-btn').forEach(btn => {
+        const group = btn.dataset.group;
+        const val = btn.dataset.val;
+        let isActive = false;
+        if (group === 'category' && state.category === val) isActive = true;
+        if (group === 'price' && state.priceFilter === val) isActive = true;
+        if (group === 'color' && state.colorFilter === val) isActive = true;
+
+        if (isActive) {
+          btn.classList.add('bg-brand-emerald', 'text-white', 'border-brand-emerald');
+          btn.classList.remove('text-gray-700', 'border-gray-200');
+        } else {
+          btn.classList.remove('bg-brand-emerald', 'text-white', 'border-brand-emerald');
+          btn.classList.add('text-gray-700', 'border-gray-200');
+        }
+      });
+    }
+
+    if (DOM.openAllFiltersBtn) DOM.openAllFiltersBtn.addEventListener('click', openAllFilters);
+    if (DOM.closeAllFiltersBtn) DOM.closeAllFiltersBtn.addEventListener('click', closeAllFilters);
+    if (DOM.allFiltersBackdrop) DOM.allFiltersBackdrop.addEventListener('click', closeAllFilters);
+
+    document.querySelectorAll('.sheet-filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const group = btn.dataset.group;
+        const val = btn.dataset.val;
+        if (group === 'category') state.category = val;
+        if (group === 'price') state.priceFilter = val;
+        if (group === 'color') state.colorFilter = val;
+        updateFilterSheetActiveStates();
+      });
+    });
+
+    const resetFilterSheetBtn = document.getElementById('reset-all-filters-sheet');
+    if (resetFilterSheetBtn) {
+      resetFilterSheetBtn.addEventListener('click', () => {
+        state.category = 'All';
+        state.priceFilter = 'all';
+        state.colorFilter = 'all';
+        state.ratingFilter = 'all';
+        state.materialFilter = 'all';
+        state.offerFilter = 'all';
+        updateFilterSheetActiveStates();
+        applyFilters();
+        closeAllFilters();
+        showToast("All filters reset.");
+      });
+    }
+
+    const applyFilterSheetBtn = document.getElementById('apply-all-filters-sheet');
+    if (applyFilterSheetBtn) {
+      applyFilterSheetBtn.addEventListener('click', () => {
+        applyFilters();
+        closeAllFilters();
+        document.getElementById('catalog-section')?.scrollIntoView({ behavior: 'smooth' });
+      });
+    }
 
     // Newsletter submit
     const newsletterForm = document.getElementById('newsletter-form');

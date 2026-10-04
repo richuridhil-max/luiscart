@@ -43,13 +43,13 @@
   <!-- Custom Styles -->
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-white text-gray-800 antialiased selection:bg-brand-emerald selection:text-white">
+<body class="bg-white text-gray-800 antialiased selection:bg-brand-emerald selection:text-white pb-16 md:pb-0">
 
   <!-- 1. TOP ANNOUNCEMENT BAR (Exact Reference Match) -->
-  <aside aria-label="Announcement" class="bg-brand-dark text-white text-xs py-2 px-4 border-b border-white/10">
+  <aside aria-label="Announcement" class="bg-brand-dark text-white text-xs py-2 px-3 sm:px-4 border-b border-white/10">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       <!-- Left: Phone / Concierge -->
-      <a href="tel:+919746359282" class="flex items-center gap-2 text-gray-300 font-medium hover:text-brand-gold transition-colors">
+      <a href="tel:+919746359282" class="flex items-center gap-1.5 sm:gap-2 text-gray-300 font-medium hover:text-brand-gold transition-colors text-[11px] sm:text-xs">
         <i data-lucide="phone" class="w-3.5 h-3.5 text-brand-gold"></i>
         <span>+91 9746359282</span>
       </a>
@@ -62,17 +62,17 @@
       </div>
 
       <!-- Right: Language & Currency / Location -->
-      <div class="flex items-center gap-4 text-gray-300">
+      <div class="flex items-center gap-3 sm:gap-4 text-gray-300 text-[11px] sm:text-xs">
         <!-- Language -->
-        <div class="flex items-center gap-1 cursor-pointer hover:text-white">
+        <div class="hidden xs:flex items-center gap-1 cursor-pointer hover:text-white">
           <span>Eng</span>
           <i data-lucide="chevron-down" class="w-3 h-3"></i>
         </div>
-        <span class="text-gray-600">|</span>
+        <span class="hidden xs:inline text-gray-600">|</span>
         <!-- Currency / Location Selector -->
         <div class="flex items-center gap-1.5">
           <i data-lucide="map-pin" class="w-3 h-3 text-brand-gold"></i>
-          <select class="currency-select bg-transparent text-white text-xs border-none focus:outline-none cursor-pointer pr-1">
+          <select class="currency-select bg-transparent text-white text-[11px] sm:text-xs border-none focus:outline-none cursor-pointer pr-1">
             <option value="USD" class="bg-brand-dark text-white">USD ($)</option>
             <option value="EUR" class="bg-brand-dark text-white">EUR (€)</option>
             <option value="GBP" class="bg-brand-dark text-white">GBP (£)</option>
@@ -84,172 +84,192 @@
     </div>
   </aside>
 
-  <!-- 2. MAIN HEADER & NAVIGATION (Exact Reference Anatomy) -->
+  <!-- 2. MAIN HEADER & NAVIGATION (Exact Reference Anatomy + Mobile Optimized) -->
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm transition-all">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-4">
-      
-      <!-- Brand Logo (User's Luiscart Logo & Monogram) -->
-      <a href="#" class="flex items-center gap-3 shrink-0 group">
-        <div class="h-11 w-11 rounded-xl bg-brand-dark overflow-hidden flex items-center justify-center p-1.5 shadow-sm group-hover:ring-2 ring-brand-gold transition-all">
-          <img src="assets/images/logo.png" alt="Luiscart Mark" class="h-full w-full object-contain">
-        </div>
-        <div class="flex flex-col">
-          <span class="font-bold text-xl tracking-wider text-brand-dark font-sans leading-none">LUISCART</span>
-          <span class="text-[9px] tracking-[0.25em] text-brand-gold font-bold uppercase mt-0.5">PREMIUM E-COMMERCE</span>
-        </div>
-      </a>
-
-      <!-- Navigation Links -->
-      <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-gray-700">
-        <!-- Categories Dropdown -->
-        <div class="relative group cursor-pointer py-2">
-          <button class="flex items-center gap-1 hover:text-brand-emerald transition-colors font-semibold">
-            <span>Categories</span>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-gray-400 group-hover:text-brand-emerald transition-transform group-hover:rotate-180"></i>
-          </button>
-          <!-- Mega Menu Dropdown -->
-          <div class="absolute top-full left-0 w-64 bg-white rounded-2xl shadow-xl border border-gray-100 p-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-            <a href="#catalog-section" data-category="Over-Ear" class="nav-category-link flex items-center gap-3 p-2.5 rounded-xl hover:bg-gray-50 text-gray-700 hover:text-brand-emerald">
-              <i data-lucide="headphones" class="w-4 h-4 text-brand-gold"></i>
-              <div>
-                <p class="text-xs font-bold">Over-Ear Headphones</p>
-                <p class="text-[10px] text-gray-400">Wireless & Studio Master</p>
-              </div>
-            </a>
-            <a href="#catalog-section" data-category="Earbuds & TWS" class="nav-category-link flex items-center gap-3 p-2.5 rounded-xl hover:bg-gray-50 text-gray-700 hover:text-brand-emerald">
-              <i data-lucide="music" class="w-4 h-4 text-brand-gold"></i>
-              <div>
-                <p class="text-xs font-bold">Wireless Earbuds & TWS</p>
-                <p class="text-[10px] text-gray-400">Noise-cancelling, IPX8 Waterproof</p>
-              </div>
-            </a>
-            <a href="#catalog-section" data-category="Noise Cancelling" class="nav-category-link flex items-center gap-3 p-2.5 rounded-xl hover:bg-gray-50 text-gray-700 hover:text-brand-emerald">
-              <i data-lucide="volume-x" class="w-4 h-4 text-brand-gold"></i>
-              <div>
-                <p class="text-xs font-bold">Active Noise Cancelling</p>
-                <p class="text-[10px] text-gray-400">Travel & Acoustic Isolation</p>
-              </div>
-            </a>
-            <a href="#catalog-section" data-category="Sports & Open-Ear" class="nav-category-link flex items-center gap-3 p-2.5 rounded-xl hover:bg-gray-50 text-gray-700 hover:text-brand-emerald">
-              <i data-lucide="activity" class="w-4 h-4 text-brand-gold"></i>
-              <div>
-                <p class="text-xs font-bold">Sports & Open-Ear</p>
-                <p class="text-[10px] text-gray-400">Bone Conduction & Secure Fit</p>
-              </div>
-            </a>
-            <a href="#catalog-section" data-category="Studio & Audiophile" class="nav-category-link flex items-center gap-3 p-2.5 rounded-xl hover:bg-gray-50 text-gray-700 hover:text-brand-emerald">
-              <i data-lucide="sliders" class="w-4 h-4 text-brand-gold"></i>
-              <div>
-                <p class="text-xs font-bold">Studio & Audiophile</p>
-                <p class="text-[10px] text-gray-400">Hi-Res Lossless & Mastering</p>
-              </div>
-            </a>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3.5">
+      <div class="flex items-center justify-between gap-3 sm:gap-4">
+        
+        <!-- Brand Logo (User's Luiscart Logo & Monogram) -->
+        <a href="#" class="flex items-center gap-2.5 sm:gap-3 shrink-0 group">
+          <div class="h-9 w-9 sm:h-11 sm:w-11 rounded-xl bg-brand-dark overflow-hidden flex items-center justify-center p-1 sm:p-1.5 shadow-sm group-hover:ring-2 ring-brand-gold transition-all">
+            <img src="assets/images/logo.png" alt="Luiscart Mark" class="h-full w-full object-contain">
           </div>
+          <div class="flex flex-col">
+            <span class="font-bold text-lg sm:text-xl tracking-wider text-brand-dark font-sans leading-none">LUISCART</span>
+            <span class="text-[8px] sm:text-[9px] tracking-[0.25em] text-brand-gold font-bold uppercase mt-0.5">PREMIUM E-COMMERCE</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-gray-700">
+          <!-- Categories Dropdown -->
+          <div class="relative group cursor-pointer py-2">
+            <button class="flex items-center gap-1 hover:text-brand-emerald transition-colors font-semibold">
+              <span>Categories</span>
+              <i data-lucide="chevron-down" class="w-4 h-4 text-gray-400 group-hover:text-brand-emerald transition-transform group-hover:rotate-180"></i>
+            </button>
+            <!-- Mega Menu Dropdown -->
+            <div class="absolute top-full left-0 w-64 bg-white rounded-2xl shadow-xl border border-gray-100 p-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <a href="#catalog-section" data-category="Over-Ear" class="nav-category-link flex items-center gap-3 p-2.5 rounded-xl hover:bg-gray-50 text-gray-700 hover:text-brand-emerald">
+                <i data-lucide="headphones" class="w-4 h-4 text-brand-gold"></i>
+                <div>
+                  <p class="text-xs font-bold">Over-Ear Headphones</p>
+                  <p class="text-[10px] text-gray-400">Wireless & Studio Master</p>
+                </div>
+              </a>
+              <a href="#catalog-section" data-category="Earbuds & TWS" class="nav-category-link flex items-center gap-3 p-2.5 rounded-xl hover:bg-gray-50 text-gray-700 hover:text-brand-emerald">
+                <i data-lucide="music" class="w-4 h-4 text-brand-gold"></i>
+                <div>
+                  <p class="text-xs font-bold">Wireless Earbuds & TWS</p>
+                  <p class="text-[10px] text-gray-400">Noise-cancelling, IPX8 Waterproof</p>
+                </div>
+              </a>
+              <a href="#catalog-section" data-category="Noise Cancelling" class="nav-category-link flex items-center gap-3 p-2.5 rounded-xl hover:bg-gray-50 text-gray-700 hover:text-brand-emerald">
+                <i data-lucide="volume-x" class="w-4 h-4 text-brand-gold"></i>
+                <div>
+                  <p class="text-xs font-bold">Active Noise Cancelling</p>
+                  <p class="text-[10px] text-gray-400">Travel & Acoustic Isolation</p>
+                </div>
+              </a>
+              <a href="#catalog-section" data-category="Sports & Open-Ear" class="nav-category-link flex items-center gap-3 p-2.5 rounded-xl hover:bg-gray-50 text-gray-700 hover:text-brand-emerald">
+                <i data-lucide="activity" class="w-4 h-4 text-brand-gold"></i>
+                <div>
+                  <p class="text-xs font-bold">Sports & Open-Ear</p>
+                  <p class="text-[10px] text-gray-400">Bone Conduction & Secure Fit</p>
+                </div>
+              </a>
+              <a href="#catalog-section" data-category="Studio & Audiophile" class="nav-category-link flex items-center gap-3 p-2.5 rounded-xl hover:bg-gray-50 text-gray-700 hover:text-brand-emerald">
+                <i data-lucide="sliders" class="w-4 h-4 text-brand-gold"></i>
+                <div>
+                  <p class="text-xs font-bold">Studio & Audiophile</p>
+                  <p class="text-[10px] text-gray-400">Hi-Res Lossless & Mastering</p>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <a href="#catalog-section" class="hover:text-brand-emerald transition-colors">Deals</a>
+          <a href="#catalog-section" class="hover:text-brand-emerald transition-colors">What's New</a>
+          <a href="#delivery-section" class="hover:text-brand-emerald transition-colors">Delivery</a>
+        </nav>
+
+        <!-- Desktop Search Bar -->
+        <div class="relative hidden md:block flex-1 max-w-xs md:max-w-sm lg:max-w-md">
+          <div class="relative flex items-center">
+            <input 
+              type="text" 
+              id="search-input" 
+              placeholder="Search Product" 
+              class="w-full bg-gray-100 text-gray-800 placeholder-gray-400 text-xs sm:text-sm rounded-full py-2.5 pl-5 pr-11 border border-transparent focus:border-brand-emerald focus:bg-white focus:outline-none transition-all shadow-inner"
+            />
+            <button class="absolute right-3.5 text-gray-400 hover:text-brand-emerald" aria-label="Search">
+              <i data-lucide="search" class="w-4 h-4"></i>
+            </button>
+          </div>
+          <!-- Desktop Predictive Suggestions -->
+          <div id="search-suggestions" class="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-xl border border-gray-100 p-2 hidden z-50"></div>
         </div>
 
-        <a href="#catalog-section" class="hover:text-brand-emerald transition-colors">Deals</a>
-        <a href="#catalog-section" class="hover:text-brand-emerald transition-colors">What's New</a>
-        <a href="#delivery-section" class="hover:text-brand-emerald transition-colors">Delivery</a>
-      </nav>
+        <!-- User Actions (Account, Wishlist, Cart) -->
+        <div class="flex items-center gap-3 sm:gap-6 shrink-0">
+          <!-- Account -->
+          <button class="hidden sm:flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-gray-700 hover:text-brand-emerald transition-colors" title="My Account">
+            <i data-lucide="user" class="w-5 h-5 text-gray-700"></i>
+            <span class="hidden sm:inline">Account</span>
+          </button>
 
-      <!-- Search Bar (Pill with right magnifying glass icon) -->
-      <div class="relative flex-1 max-w-xs md:max-w-sm lg:max-w-md">
+          <!-- Wishlist -->
+          <button class="open-wishlist-trigger relative flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-gray-700 hover:text-brand-emerald transition-colors" title="My Wishlist">
+            <div class="relative">
+              <i data-lucide="heart" class="w-5 h-5 text-gray-700"></i>
+              <span class="wishlist-count-badge hidden absolute -top-1.5 -right-2 bg-red-500 text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center">0</span>
+            </div>
+            <span class="hidden md:inline">Wishlist</span>
+          </button>
+
+          <!-- Cart (Exact Reference Icon & Style) -->
+          <button class="open-cart-trigger relative flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-gray-700 hover:text-brand-emerald transition-colors" title="Shopping Cart">
+            <div class="relative">
+              <i data-lucide="shopping-cart" class="w-5 h-5 text-gray-700"></i>
+              <span class="cart-count-badge hidden absolute -top-1.5 -right-2 bg-brand-emerald text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center">0</span>
+            </div>
+            <span class="hidden sm:inline">Cart</span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Mobile Full-Width Search Bar (md:hidden) -->
+      <div class="mt-2.5 pt-0.5 md:hidden relative">
         <div class="relative flex items-center">
           <input 
             type="text" 
-            id="search-input" 
-            placeholder="Search Product" 
-            class="w-full bg-gray-100 text-gray-800 placeholder-gray-400 text-xs sm:text-sm rounded-full py-2.5 pl-5 pr-11 border border-transparent focus:border-brand-emerald focus:bg-white focus:outline-none transition-all shadow-inner"
+            id="search-input-mobile" 
+            placeholder="Search headphones, earbuds, studio..." 
+            class="w-full bg-gray-100 text-gray-800 placeholder-gray-400 text-xs rounded-full py-2 pl-4 pr-10 border border-transparent focus:border-brand-emerald focus:bg-white focus:outline-none transition-all shadow-inner"
           />
-          <button class="absolute right-3.5 text-gray-400 hover:text-brand-emerald" aria-label="Search">
+          <button class="absolute right-3 text-gray-400 hover:text-brand-emerald" aria-label="Search">
             <i data-lucide="search" class="w-4 h-4"></i>
           </button>
         </div>
-        <!-- Live Predictive Search Suggestions Dropdown -->
-        <div id="search-suggestions" class="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-xl border border-gray-100 p-2 hidden z-50"></div>
-      </div>
-
-      <!-- User Actions (Account & Cart) -->
-      <div class="flex items-center gap-4 sm:gap-6 shrink-0">
-        <!-- Account -->
-        <button class="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-gray-700 hover:text-brand-emerald transition-colors" title="My Account">
-          <i data-lucide="user" class="w-5 h-5 text-gray-700"></i>
-          <span class="hidden sm:inline">Account</span>
-        </button>
-
-        <!-- Wishlist -->
-        <button class="open-wishlist-trigger relative flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-gray-700 hover:text-brand-emerald transition-colors" title="My Wishlist">
-          <div class="relative">
-            <i data-lucide="heart" class="w-5 h-5 text-gray-700"></i>
-            <span class="wishlist-count-badge hidden absolute -top-1.5 -right-2 bg-red-500 text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center">0</span>
-          </div>
-          <span class="hidden md:inline">Wishlist</span>
-        </button>
-
-        <!-- Cart (Exact Reference Icon & Style) -->
-        <button class="open-cart-trigger relative flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-gray-700 hover:text-brand-emerald transition-colors" title="Shopping Cart">
-          <div class="relative">
-            <i data-lucide="shopping-cart" class="w-5 h-5 text-gray-700"></i>
-            <span class="cart-count-badge hidden absolute -top-1.5 -right-2 bg-brand-emerald text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center">0</span>
-          </div>
-          <span class="hidden sm:inline">Cart</span>
-        </button>
+        <!-- Mobile Predictive Suggestions -->
+        <div id="search-suggestions-mobile" class="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-xl border border-gray-100 p-2 hidden z-50"></div>
       </div>
 
     </div>
   </header>
 
-  <!-- 3. HERO PROMOTIONAL BANNER CARD (Exact Reference Layout) -->
+  <!-- 3. HERO PROMOTIONAL BANNER CARD (Exact Reference Layout + Mobile Responsive) -->
   <main>
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-4">
-      <div class="hero-banner-card rounded-[2rem] p-8 sm:p-12 lg:p-16 flex flex-col md:flex-row items-center justify-between gap-8 min-h-[360px] lg:min-h-[420px]">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 pb-4">
+      <div class="hero-banner-card rounded-2xl sm:rounded-[2rem] p-5 sm:p-10 lg:p-16 flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 min-h-[340px] lg:min-h-[420px]">
         
         <!-- Left Headline & Pill Button -->
-        <div class="max-w-lg z-10 text-left">
-          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-emerald/10 text-brand-emerald text-xs font-bold uppercase tracking-wider mb-4">
-            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-brand-gold"></i> Exclusive Seasonal Drop
+        <div class="max-w-lg z-10 text-left w-full md:w-auto">
+          <span class="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 rounded-full bg-brand-emerald/10 text-brand-emerald text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-3 sm:mb-4">
+            <i data-lucide="sparkles" class="w-3 sm:w-3.5 h-3 sm:h-3.5 text-brand-gold"></i> Exclusive Seasonal Drop
           </span>
-          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-emerald leading-[1.15] tracking-tight mb-6">
+          <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-brand-emerald leading-[1.2] tracking-tight mb-3 sm:mb-6">
             Grab Upto 50% Off On Selected Headphone
           </h1>
-          <p class="text-gray-700 text-sm sm:text-base leading-relaxed mb-8">
+          <p class="text-gray-700 text-xs sm:text-base leading-relaxed mb-5 sm:mb-8">
             Experience uncompressed high-fidelity acoustics, active noise suppression, and handcrafted luxury materials tailored for true sound connoisseurs.
           </p>
-          <div class="flex items-center gap-4">
+          <div class="flex flex-wrap items-center gap-3 sm:gap-4">
             <button 
               id="hero-buy-now-btn" 
-              class="px-8 py-3.5 rounded-full bg-brand-emerald hover:bg-brand-dark text-white font-bold text-sm sm:text-base shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 cursor-pointer flex items-center gap-2"
+              class="px-6 sm:px-8 py-3 sm:py-3.5 rounded-full bg-brand-emerald hover:bg-brand-dark text-white font-bold text-xs sm:text-base shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 cursor-pointer flex items-center gap-2"
             >
               Buy Now
-              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              <i data-lucide="arrow-right" class="w-3.5 sm:w-4 h-3.5 sm:h-4"></i>
             </button>
-            <div class="flex items-center gap-2 text-xs font-semibold text-gray-700">
-              <i data-lucide="shield-check" class="w-4 h-4 text-brand-emerald"></i>
+            <div class="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-semibold text-gray-700">
+              <i data-lucide="shield-check" class="w-3.5 sm:w-4 h-3.5 sm:h-4 text-brand-emerald"></i>
               <span>2-Year Luiscart VIP Warranty</span>
             </div>
           </div>
         </div>
 
         <!-- Right Editorial Lifestyle Visual -->
-        <div class="relative w-full md:w-1/2 flex items-center justify-center lg:justify-end">
+        <div class="relative w-full md:w-1/2 flex items-center justify-center lg:justify-end mt-2 md:mt-0">
           <!-- Subtle decorative radial halo -->
-          <div class="absolute w-72 h-72 rounded-full bg-brand-gold/20 blur-3xl -z-0"></div>
+          <div class="absolute w-56 sm:w-72 h-56 sm:h-72 rounded-full bg-brand-gold/20 blur-3xl -z-0"></div>
           
-          <div class="relative z-10 max-w-[420px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white/60 group">
+          <div class="relative z-10 w-full max-w-[340px] sm:max-w-[420px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border-4 border-white/60 group">
             <img 
               src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80" 
               alt="Premium Headphone Model" 
-              class="w-full h-80 sm:h-96 object-cover transform group-hover:scale-105 transition-transform duration-500"
+              class="w-full h-64 sm:h-80 md:h-96 object-cover transform group-hover:scale-105 transition-transform duration-500"
             />
             <!-- Overlay floating badge -->
-            <div class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md rounded-2xl p-3.5 shadow-lg flex items-center justify-between border border-white/40">
+            <div class="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 bg-white/90 backdrop-blur-md rounded-xl sm:rounded-2xl p-2.5 sm:p-3.5 shadow-lg flex items-center justify-between border border-white/40">
               <div>
-                <p class="text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Flagship Model</p>
-                <p class="text-xs font-bold text-gray-900">AirPods Max Luxe Edition</p>
+                <p class="text-[9px] sm:text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Flagship Model</p>
+                <p class="text-xs sm:text-sm font-bold text-gray-900">AirPods Max Luxe Edition</p>
               </div>
               <div class="text-right">
-                <span class="text-xs font-extrabold text-brand-emerald">$559.00</span>
-                <span class="block text-[10px] text-gray-400 line-through">$699.00</span>
+                <span class="text-xs sm:text-sm font-extrabold text-brand-emerald">$559.00</span>
+                <span class="block text-[9px] sm:text-[10px] text-gray-400 line-through">$699.00</span>
               </div>
             </div>
           </div>
@@ -257,19 +277,19 @@
 
       </div>
     </section>
-
-    <!-- 4. HORIZONTAL FILTER PILLS BAR (Exact Reference Match) -->
-    <section id="catalog-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-2">
-      <div class="flex items-center justify-between flex-wrap gap-3 pb-4 border-b border-gray-100">
         
-        <!-- Left Filter Pills -->
-        <div class="flex items-center flex-wrap gap-2.5 overflow-x-auto py-1 scrollbar-none">
+    <!-- 4. HORIZONTAL FILTER PILLS BAR (Exact Reference Match + Mobile Touch-Scrollable) -->
+    <section id="catalog-section" class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-6 sm:pt-8 pb-2">
+      <div class="flex items-center justify-between gap-2 sm:gap-3 pb-3 sm:pb-4 border-b border-gray-100">
+        
+        <!-- Left Filter Pills (Horizontally swipeable on mobile) -->
+        <div class="flex items-center gap-2 overflow-x-auto py-1 scrollbar-none no-scrollbar flex-nowrap sm:flex-wrap flex-grow min-w-0">
           
           <!-- Headphone Type / Category Dropdown -->
-          <div class="relative filter-dropdown" data-filter-type="category">
-            <button class="filter-pill filter-toggle-btn">
+          <div class="relative filter-dropdown shrink-0" data-filter-type="category">
+            <button class="filter-pill filter-toggle-btn text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-2.5">
               <span>Headphone Type</span>
-              <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+              <i data-lucide="chevron-down" class="w-3 sm:w-3.5 h-3 sm:h-3.5"></i>
             </button>
             <div class="filter-menu hidden absolute top-full left-0 mt-2 w-52 bg-white rounded-2xl shadow-xl border border-gray-100 p-2 z-30">
               <button data-filter-val="All" class="w-full text-left px-3 py-2 text-xs font-medium rounded-lg hover:bg-gray-50 text-gray-700">All Headphones</button>
@@ -282,10 +302,10 @@
           </div>
 
           <!-- Price Dropdown -->
-          <div class="relative filter-dropdown" data-filter-type="price">
-            <button class="filter-pill filter-toggle-btn">
+          <div class="relative filter-dropdown shrink-0" data-filter-type="price">
+            <button class="filter-pill filter-toggle-btn text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-2.5">
               <span>Price</span>
-              <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+              <i data-lucide="chevron-down" class="w-3 sm:w-3.5 h-3 sm:h-3.5"></i>
             </button>
             <div class="filter-menu hidden absolute top-full left-0 mt-2 w-44 bg-white rounded-2xl shadow-xl border border-gray-100 p-2 z-30">
               <button data-filter-val="all" class="w-full text-left px-3 py-2 text-xs font-medium rounded-lg hover:bg-gray-50 text-gray-700">Any Price</button>
@@ -297,10 +317,10 @@
           </div>
 
           <!-- Review Dropdown -->
-          <div class="relative filter-dropdown" data-filter-type="rating">
-            <button class="filter-pill filter-toggle-btn">
+          <div class="relative filter-dropdown shrink-0" data-filter-type="rating">
+            <button class="filter-pill filter-toggle-btn text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-2.5">
               <span>Review</span>
-              <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+              <i data-lucide="chevron-down" class="w-3 sm:w-3.5 h-3 sm:h-3.5"></i>
             </button>
             <div class="filter-menu hidden absolute top-full left-0 mt-2 w-40 bg-white rounded-2xl shadow-xl border border-gray-100 p-2 z-30">
               <button data-filter-val="all" class="w-full text-left px-3 py-2 text-xs font-medium rounded-lg hover:bg-gray-50 text-gray-700">All Ratings</button>
@@ -310,10 +330,10 @@
           </div>
 
           <!-- Color Dropdown -->
-          <div class="relative filter-dropdown" data-filter-type="color">
-            <button class="filter-pill filter-toggle-btn">
+          <div class="relative filter-dropdown shrink-0" data-filter-type="color">
+            <button class="filter-pill filter-toggle-btn text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-2.5">
               <span>Color</span>
-              <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+              <i data-lucide="chevron-down" class="w-3 sm:w-3.5 h-3 sm:h-3.5"></i>
             </button>
             <div class="filter-menu hidden absolute top-full left-0 mt-2 w-40 bg-white rounded-2xl shadow-xl border border-gray-100 p-2 z-30">
               <button data-filter-val="all" class="w-full text-left px-3 py-2 text-xs font-medium rounded-lg hover:bg-gray-50 text-gray-700">All Colors</button>
@@ -325,10 +345,10 @@
           </div>
 
           <!-- Material Dropdown -->
-          <div class="relative filter-dropdown" data-filter-type="material">
-            <button class="filter-pill filter-toggle-btn">
+          <div class="relative filter-dropdown shrink-0" data-filter-type="material">
+            <button class="filter-pill filter-toggle-btn text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-2.5">
               <span>Material</span>
-              <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+              <i data-lucide="chevron-down" class="w-3 sm:w-3.5 h-3 sm:h-3.5"></i>
             </button>
             <div class="filter-menu hidden absolute top-full left-0 mt-2 w-48 bg-white rounded-2xl shadow-xl border border-gray-100 p-2 z-30">
               <button data-filter-val="all" class="w-full text-left px-3 py-2 text-xs font-medium rounded-lg hover:bg-gray-50 text-gray-700">All Materials</button>
@@ -340,10 +360,10 @@
           </div>
 
           <!-- Offer Dropdown -->
-          <div class="relative filter-dropdown" data-filter-type="offer">
-            <button class="filter-pill filter-toggle-btn">
+          <div class="relative filter-dropdown shrink-0" data-filter-type="offer">
+            <button class="filter-pill filter-toggle-btn text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-2.5">
               <span>Offer</span>
-              <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+              <i data-lucide="chevron-down" class="w-3 sm:w-3.5 h-3 sm:h-3.5"></i>
             </button>
             <div class="filter-menu hidden absolute top-full left-0 mt-2 w-40 bg-white rounded-2xl shadow-xl border border-gray-100 p-2 z-30">
               <button data-filter-val="all" class="w-full text-left px-3 py-2 text-xs font-medium rounded-lg hover:bg-gray-50 text-gray-700">All Offers</button>
@@ -355,18 +375,18 @@
           </div>
 
           <!-- All Filters Button -->
-          <button class="filter-pill flex items-center gap-1.5" onclick="document.getElementById('all-filters-drawer')?.classList.toggle('hidden')">
+          <button id="open-all-filters-btn" class="filter-pill flex items-center gap-1.5 text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-2.5 shrink-0">
             <span>All Filters</span>
-            <i data-lucide="sliders-horizontal" class="w-3.5 h-3.5 text-gray-600"></i>
+            <i data-lucide="sliders-horizontal" class="w-3 sm:w-3.5 h-3 sm:h-3.5 text-gray-600"></i>
           </button>
 
         </div>
 
         <!-- Right Sort Dropdown -->
         <div class="relative filter-dropdown shrink-0" data-filter-type="sort">
-          <button class="filter-pill filter-toggle-btn font-semibold">
+          <button class="filter-pill filter-toggle-btn font-semibold text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-2.5">
             <span>Sort by</span>
-            <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+            <i data-lucide="chevron-down" class="w-3 sm:w-3.5 h-3 sm:h-3.5"></i>
           </button>
           <div class="filter-menu hidden absolute top-full right-0 mt-2 w-48 bg-white rounded-2xl shadow-xl border border-gray-100 p-2 z-30">
             <button data-filter-val="featured" class="w-full text-left px-3 py-2 text-xs font-medium rounded-lg hover:bg-gray-50 text-gray-700">Featured Curation</button>
@@ -383,9 +403,9 @@
       <div id="active-filter-tags"></div>
 
       <!-- Section Title (Exact Reference Match) -->
-      <div class="flex items-baseline justify-between pt-8 pb-4">
-        <div class="flex items-baseline gap-3">
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
+      <div class="flex items-baseline justify-between pt-6 sm:pt-8 pb-3 sm:pb-4">
+        <div class="flex items-baseline gap-2 sm:gap-3">
+          <h2 class="text-xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
             Headphones For You!
           </h2>
           <span id="product-count" class="text-xs text-gray-400 font-medium"></span>
@@ -393,9 +413,9 @@
       </div>
     </section>
 
-    <!-- 5. PRODUCT GRID (4 Columns on Desktop, Exact Reference Anatomy) -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-      <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7">
+    <!-- 5. PRODUCT GRID (2 Columns on Mobile, 4 Columns on Desktop) -->
+    <section class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pb-16">
+      <div id="product-grid" class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
         <!-- Injected dynamically by js/app.js -->
       </div>
     </section>
@@ -649,9 +669,9 @@
   <div id="quick-view-backdrop" class="modal-backdrop fixed inset-0 z-50"></div>
 
   <!-- Quick View Modal Window -->
-  <div id="quick-view-modal" class="hidden fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl relative">
-      <button class="close-quick-view-trigger absolute top-5 right-5 p-2 rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-700 transition-colors">
+  <div id="quick-view-modal" class="hidden fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-3 sm:p-4">
+    <div class="bg-white rounded-2xl sm:rounded-3xl max-w-3xl w-full p-4 sm:p-8 shadow-2xl relative max-h-[92vh] overflow-y-auto my-auto">
+      <button class="close-quick-view-trigger absolute top-4 right-4 sm:top-5 sm:right-5 p-2 rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-700 transition-colors">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
       <div id="quick-view-content">
@@ -664,18 +684,18 @@
   <div id="wishlist-backdrop" class="modal-backdrop fixed inset-0 z-50"></div>
 
   <!-- Wishlist Modal Window -->
-  <div id="wishlist-modal" class="hidden fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl relative">
-      <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-4">
+  <div id="wishlist-modal" class="hidden fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-3 sm:p-4">
+    <div class="bg-white rounded-2xl sm:rounded-3xl max-w-lg w-full p-4 sm:p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto my-auto">
+      <div class="flex items-center justify-between pb-3 sm:pb-4 border-b border-gray-100 mb-4">
         <div class="flex items-center gap-2">
           <i data-lucide="heart" class="w-5 h-5 text-red-500 fill-red-500"></i>
-          <h3 class="font-bold text-gray-900 text-lg">Your Saved Favorites</h3>
+          <h3 class="font-bold text-gray-900 text-base sm:text-lg">Your Saved Favorites</h3>
         </div>
         <button class="close-wishlist-trigger p-1 text-gray-400 hover:text-gray-700">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
-      <div id="wishlist-items-list" class="max-h-96 overflow-y-auto space-y-3">
+      <div id="wishlist-items-list" class="max-h-80 sm:max-h-96 overflow-y-auto space-y-3">
         <!-- Injected by js/app.js -->
       </div>
     </div>
@@ -685,26 +705,26 @@
   <div id="checkout-backdrop" class="modal-backdrop fixed inset-0 z-50"></div>
 
   <!-- Checkout Modal Window -->
-  <div id="checkout-modal" class="hidden fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl relative">
-      <button class="close-checkout-trigger absolute top-5 right-5 p-2 rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-700">
+  <div id="checkout-modal" class="hidden fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-3 sm:p-4">
+    <div class="bg-white rounded-2xl sm:rounded-3xl max-w-xl w-full p-4 sm:p-8 shadow-2xl relative max-h-[92vh] overflow-y-auto my-auto">
+      <button class="close-checkout-trigger absolute top-4 right-4 sm:top-5 sm:right-5 p-2 rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-700">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
 
-      <div class="mb-6 pb-4 border-b border-gray-100 flex items-center justify-between">
+      <div class="mb-5 sm:mb-6 pb-3 sm:pb-4 border-b border-gray-100 flex items-center justify-between">
         <div>
-          <span class="text-[10px] text-brand-gold uppercase tracking-[0.2em] font-bold">LUISCART CONCIERGE</span>
-          <h3 class="text-xl font-bold text-gray-900">Encrypted VIP Checkout</h3>
+          <span class="text-[9px] sm:text-[10px] text-brand-gold uppercase tracking-[0.2em] font-bold">LUISCART CONCIERGE</span>
+          <h3 class="text-lg sm:text-xl font-bold text-gray-900">Encrypted VIP Checkout</h3>
         </div>
         <div class="text-right">
-          <span class="text-xs text-gray-400 block">Total Due</span>
-          <span id="checkout-total-summary" class="text-base font-extrabold text-brand-emerald">$0.00</span>
+          <span class="text-[11px] sm:text-xs text-gray-400 block">Total Due</span>
+          <span id="checkout-total-summary" class="text-sm sm:text-base font-extrabold text-brand-emerald">$0.00</span>
         </div>
       </div>
 
       <form id="checkout-form">
         <!-- Step 1: Shipping Details -->
-        <div id="checkout-step-1" class="space-y-4">
+        <div id="checkout-step-1" class="space-y-3 sm:space-y-4">
           <h4 class="text-xs uppercase tracking-wider text-gray-400 font-bold">1. Delivery Address & Client Details</h4>
           
           <div>
@@ -712,7 +732,7 @@
             <input type="text" id="checkout-name" value="Alexander Vance" required class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-xs focus:outline-none focus:border-brand-emerald" />
           </div>
 
-          <div class="grid grid-cols-2 gap-3">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label class="block text-xs font-semibold text-gray-700 mb-1">VIP Email Address</label>
               <input type="email" id="checkout-email" value="alexander.vance@maison.com" required class="w-full px-4 py-2.5 rounded-xl border border-gray-300 text-xs focus:outline-none focus:border-brand-emerald" />
@@ -746,7 +766,7 @@
         </div>
 
         <!-- Step 2: Payment Details -->
-        <div id="checkout-step-2" class="hidden space-y-4">
+        <div id="checkout-step-2" class="hidden space-y-3 sm:space-y-4">
           <h4 class="text-xs uppercase tracking-wider text-gray-400 font-bold">2. Select Payment Method</h4>
 
           <!-- Payment Options -->
@@ -790,7 +810,7 @@
           </div>
 
           <!-- Card Inputs Preview -->
-          <div class="p-4 bg-gray-50 rounded-2xl border border-gray-200 space-y-3">
+          <div class="p-3.5 sm:p-4 bg-gray-50 rounded-2xl border border-gray-200 space-y-2.5 sm:space-y-3">
             <div>
               <label class="block text-[11px] font-semibold text-gray-600 mb-1">Card Number</label>
               <input type="text" value="•••• •••• •••• 4092" class="w-full px-3 py-2 rounded-lg bg-white border border-gray-300 text-xs font-mono" />
@@ -821,15 +841,118 @@
   </div>
 
   <!-- Order Confirmation Modal Window -->
-  <div id="order-confirmation-modal" class="hidden fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative">
+  <div id="order-confirmation-modal" class="hidden fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-3 sm:p-4">
+    <div class="bg-white rounded-2xl sm:rounded-3xl max-w-lg w-full p-5 sm:p-8 shadow-2xl relative max-h-[92vh] overflow-y-auto my-auto">
       <div id="order-confirmation-content">
         <!-- Injected by js/app.js -->
       </div>
     </div>
   </div>
 
+  <!-- All Filters Drawer (Mobile Friendly Sheet) -->
+  <div id="all-filters-backdrop" class="modal-backdrop fixed inset-0 z-50"></div>
+  <div id="all-filters-drawer" class="hidden fixed inset-0 z-50 overflow-y-auto flex items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="bg-white rounded-t-3xl sm:rounded-3xl max-w-lg w-full p-5 sm:p-6 shadow-2xl relative max-h-[85vh] overflow-y-auto">
+      <div class="flex items-center justify-between pb-3 border-b border-gray-100 mb-4 sticky top-0 bg-white z-10">
+        <div class="flex items-center gap-2">
+          <i data-lucide="sliders-horizontal" class="w-5 h-5 text-brand-emerald"></i>
+          <h3 class="font-bold text-gray-900 text-base sm:text-lg">Filter Audio Catalog</h3>
+        </div>
+        <button id="close-all-filters-btn" class="p-1.5 rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-700">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
 
+      <div class="space-y-4 text-xs">
+        <!-- Category Filter -->
+        <div>
+          <label class="font-bold text-gray-700 block mb-2">Category / Type</label>
+          <div class="flex flex-wrap gap-1.5">
+            <button class="sheet-filter-btn px-3 py-1.5 rounded-full border border-gray-200 text-gray-700 hover:bg-brand-emerald hover:text-white" data-group="category" data-val="All">All</button>
+            <button class="sheet-filter-btn px-3 py-1.5 rounded-full border border-gray-200 text-gray-700 hover:bg-brand-emerald hover:text-white" data-group="category" data-val="Over-Ear">Over-Ear</button>
+            <button class="sheet-filter-btn px-3 py-1.5 rounded-full border border-gray-200 text-gray-700 hover:bg-brand-emerald hover:text-white" data-group="category" data-val="Earbuds & TWS">Earbuds & TWS</button>
+            <button class="sheet-filter-btn px-3 py-1.5 rounded-full border border-gray-200 text-gray-700 hover:bg-brand-emerald hover:text-white" data-group="category" data-val="Noise Cancelling">Noise Cancelling</button>
+            <button class="sheet-filter-btn px-3 py-1.5 rounded-full border border-gray-200 text-gray-700 hover:bg-brand-emerald hover:text-white" data-group="category" data-val="Sports & Open-Ear">Sports & Open-Ear</button>
+            <button class="sheet-filter-btn px-3 py-1.5 rounded-full border border-gray-200 text-gray-700 hover:bg-brand-emerald hover:text-white" data-group="category" data-val="Studio & Audiophile">Studio & Audiophile</button>
+          </div>
+        </div>
+
+        <!-- Price Filter -->
+        <div>
+          <label class="font-bold text-gray-700 block mb-2">Price Range</label>
+          <div class="flex flex-wrap gap-1.5">
+            <button class="sheet-filter-btn px-3 py-1.5 rounded-full border border-gray-200 text-gray-700 hover:bg-brand-emerald hover:text-white" data-group="price" data-val="all">Any Price</button>
+            <button class="sheet-filter-btn px-3 py-1.5 rounded-full border border-gray-200 text-gray-700 hover:bg-brand-emerald hover:text-white" data-group="price" data-val="under-100">Under $100</button>
+            <button class="sheet-filter-btn px-3 py-1.5 rounded-full border border-gray-200 text-gray-700 hover:bg-brand-emerald hover:text-white" data-group="price" data-val="100-300">$100 — $300</button>
+            <button class="sheet-filter-btn px-3 py-1.5 rounded-full border border-gray-200 text-gray-700 hover:bg-brand-emerald hover:text-white" data-group="price" data-val="300-600">$300 — $600</button>
+            <button class="sheet-filter-btn px-3 py-1.5 rounded-full border border-gray-200 text-gray-700 hover:bg-brand-emerald hover:text-white" data-group="price" data-val="over-600">Over $600</button>
+          </div>
+        </div>
+
+        <!-- Color Filter -->
+        <div>
+          <label class="font-bold text-gray-700 block mb-2">Color Finish</label>
+          <div class="flex flex-wrap gap-1.5">
+            <button class="sheet-filter-btn px-3 py-1.5 rounded-full border border-gray-200 text-gray-700 hover:bg-brand-emerald hover:text-white" data-group="color" data-val="all">All Colors</button>
+            <button class="sheet-filter-btn px-3 py-1.5 rounded-full border border-gray-200 text-gray-700 hover:bg-brand-emerald hover:text-white" data-group="color" data-val="Black">Black</button>
+            <button class="sheet-filter-btn px-3 py-1.5 rounded-full border border-gray-200 text-gray-700 hover:bg-brand-emerald hover:text-white" data-group="color" data-val="Gold">Gold</button>
+            <button class="sheet-filter-btn px-3 py-1.5 rounded-full border border-gray-200 text-gray-700 hover:bg-brand-emerald hover:text-white" data-group="color" data-val="Red">Red</button>
+            <button class="sheet-filter-btn px-3 py-1.5 rounded-full border border-gray-200 text-gray-700 hover:bg-brand-emerald hover:text-white" data-group="color" data-val="Blue">Blue</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-gray-100 flex gap-3">
+        <button id="reset-all-filters-sheet" class="w-1/2 py-2.5 rounded-full border border-gray-300 text-gray-700 text-xs font-semibold hover:bg-gray-50">
+          Reset All
+        </button>
+        <button id="apply-all-filters-sheet" class="w-1/2 py-2.5 rounded-full bg-brand-emerald text-white text-xs font-bold hover:bg-brand-dark shadow-md">
+          Apply Filters
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Sticky Bottom App Navigation Bar (md:hidden) -->
+  <nav aria-label="Mobile Navigation" class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-gray-200/80 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] px-2 py-1.5 flex items-center justify-around safe-area-pb">
+    <!-- Home -->
+    <a href="#" class="flex flex-col items-center gap-1 text-gray-600 hover:text-brand-emerald focus:text-brand-emerald text-[10px] font-semibold py-1">
+      <i data-lucide="home" class="w-5 h-5"></i>
+      <span>Home</span>
+    </a>
+
+    <!-- Explore -->
+    <a href="#catalog-section" class="flex flex-col items-center gap-1 text-gray-600 hover:text-brand-emerald focus:text-brand-emerald text-[10px] font-semibold py-1">
+      <i data-lucide="headphones" class="w-5 h-5"></i>
+      <span>Catalog</span>
+    </a>
+
+    <!-- Wishlist -->
+    <button class="open-wishlist-trigger relative flex flex-col items-center gap-1 text-gray-600 hover:text-brand-emerald text-[10px] font-semibold py-1">
+      <div class="relative">
+        <i data-lucide="heart" class="w-5 h-5"></i>
+        <span class="wishlist-count-badge hidden absolute -top-1.5 -right-2 bg-red-500 text-white text-[9px] font-bold rounded-full h-3.5 w-3.5 flex items-center justify-center">0</span>
+      </div>
+      <span>Wishlist</span>
+    </button>
+
+    <!-- Cart -->
+    <button class="open-cart-trigger relative flex flex-col items-center gap-1 text-brand-emerald font-semibold text-[10px] py-1">
+      <div class="relative">
+        <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+        <span class="cart-count-badge hidden absolute -top-1.5 -right-2 bg-brand-emerald text-white text-[9px] font-bold rounded-full h-3.5 w-3.5 flex items-center justify-center">0</span>
+      </div>
+      <span>Cart</span>
+    </button>
+
+    <!-- WhatsApp Direct Concierge (+91 9746359282) -->
+    <a href="https://wa.me/919746359282?text=Hello%20Luiscart%20Concierge%2C%20I%20would%20like%20to%20inquire%20about%20your%20luxury%20audio%20products." target="_blank" rel="noopener noreferrer" class="flex flex-col items-center gap-1 text-[#25D366] font-semibold text-[10px] py-1">
+      <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+      </svg>
+      <span>WhatsApp</span>
+    </a>
+  </nav>
 
   <!-- Toast Notification Container -->
   <div id="toast-container" class="toast-container"></div>
